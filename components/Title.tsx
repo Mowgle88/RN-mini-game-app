@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import Colors from '../constants/colors'
 
 interface TitleProps {
   children?: React.ReactNode,
@@ -16,9 +17,9 @@ const styles = StyleSheet.create({
     padding: 12,
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#ddb52f',
+    color: Colors.accent500,
     textAlign: 'center',
     borderWidth: 2,
-    borderColor: '#ddb52f',
+    borderColor: Colors.accent500,
   }
 })
