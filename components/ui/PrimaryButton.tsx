@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
-import React, { cloneElement } from 'react'
-import Colors from '../constants/colors'
+import React from 'react'
+import Colors from '../../constants/colors'
 
 interface PrimaryButtonProps {
   children?: React.ReactNode,
