@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, View, Text, Alert } from 'react-native'
 import NumberContainer from '../components/game/NumberContainer';
 import PrimaryButton from '../components/ui/PrimaryButton';
 import Title from '../components/ui/Title'
 
 interface GameScreenProps {
-  userNumber: number
+  userNumber: number,
+  onGameOver: () => void
 }
 
 function generateRandomBetween(min: number, max: number, exclude: number): number {
@@ -21,11 +22,17 @@ function generateRandomBetween(min: number, max: number, exclude: number): numbe
 let minBoundary = 1;
 let maxBoundary = 100;
 
-export default function GameScreen(this: any, { userNumber }: GameScreenProps) {
+export default function GameScreen(this: any, { userNumber, onGameOver }: GameScreenProps) {
 
-  const initialGuess = generateRandomBetween(minBoundary, maxBoundary, userNumber)
+  const initialGuess = generateRandomBetween(1, 100, userNumber)
 
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
+
+  useEffect(() => {
+    if (currentGuess === userNumber) {
+      onGameOver();
+    }
+  }, [currentGuess, userNumber, onGameOver])
 
   function nextGuessHandler(direction: string) {
 
@@ -44,7 +51,6 @@ export default function GameScreen(this: any, { userNumber }: GameScreenProps) {
     } else {
       minBoundary = currentGuess + 1;
     }
-    console.log(minBoundary, maxBoundary);
     const newRndNumber = generateRandomBetween(minBoundary, maxBoundary, currentGuess);
     setCurrentGuess(newRndNumber);
   }
