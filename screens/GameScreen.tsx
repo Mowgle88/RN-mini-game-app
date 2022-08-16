@@ -62,7 +62,7 @@ export default function GameScreen(this: any, { userNumber, onGameOver }: GameSc
       <Title>Opponent's Guess</Title>
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card>
-        <InstructionText>Hidher or lower?</InstructionText>
+        <InstructionText style={styles.instructionText}>Hidher or lower?</InstructionText>
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonContainer}>
             <PrimaryButton onPress={nextGuessHandler.bind(this, 'lower')}>-</PrimaryButton>
@@ -80,6 +80,9 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     padding: 24
+  },
+  instructionText: {
+    marginBottom: 12
   },
   buttonsContainer: {
     flexDirection: 'row'
