@@ -10,7 +10,7 @@ import GuessLogItem from '../components/game/GuessLogItem';
 
 interface GameScreenProps {
   userNumber: number,
-  onGameOver: () => void
+  onGameOver: (numberOfRounds: number) => void
 }
 
 function generateRandomBetween(min: number, max: number, exclude: number): number {
@@ -34,7 +34,7 @@ export default function GameScreen(this: any, { userNumber, onGameOver }: GameSc
 
   useEffect(() => {
     if (currentGuess === userNumber) {
-      onGameOver();
+      onGameOver(guessRounds.length);
     }
   }, [currentGuess, userNumber, onGameOver])
 
@@ -119,5 +119,6 @@ const styles = StyleSheet.create({
   },
   flatListContainer: {
     flex: 1,
+    paddingVertical: 16
   }
 })
