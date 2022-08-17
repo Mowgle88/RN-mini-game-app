@@ -36,6 +36,11 @@ export default function GameScreen(this: any, { userNumber, onGameOver }: GameSc
     }
   }, [currentGuess, userNumber, onGameOver])
 
+  useEffect(() => {
+    minBoundary = 1;
+    maxBoundary = 100;
+  }, [])
+
   function nextGuessHandler(direction: string) {
 
     if (
