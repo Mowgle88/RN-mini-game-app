@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Alert } from 'react-native';
+import { StyleSheet, View, Alert, Text, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import NumberContainer from '../components/game/NumberContainer';
 import Card from '../components/ui/Card';
 import InstructionText from '../components/ui/InstructionText';
 import PrimaryButton from '../components/ui/PrimaryButton';
 import Title from '../components/ui/Title';
+import GuessLogItem from '../components/game/GuessLogItem';
 
 interface GameScreenProps {
   userNumber: number,
@@ -29,6 +30,7 @@ export default function GameScreen(this: any, { userNumber, onGameOver }: GameSc
 
   const initialGuess = generateRandomBetween(1, 100, userNumber);
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
+  const [guessRounds, setGuessRounds] = useState([initialGuess]);
 
   useEffect(() => {
     if (currentGuess === userNumber) {
@@ -60,7 +62,10 @@ export default function GameScreen(this: any, { userNumber, onGameOver }: GameSc
     }
     const newRndNumber = generateRandomBetween(minBoundary, maxBoundary, currentGuess);
     setCurrentGuess(newRndNumber);
+    setGuessRounds((prevGuessRounds) => [...prevGuessRounds, newRndNumber])
   }
+
+  // const guessRoundsListLength = guessRounds.length;
 
   return (
     <View style={styles.screen}>
@@ -81,6 +86,19 @@ export default function GameScreen(this: any, { userNumber, onGameOver }: GameSc
           </View>
         </View>
       </Card>
+      <View style={styles.flatListContainer}>
+        <FlatList
+          data={guessRounds}
+          renderItem={(itemData) => (
+            <GuessLogItem
+              // roundNumber={guessRoundsListLength - itemData.index}
+              roundNumber={itemData.index + 1}
+              guess={itemData.item}
+            />
+          )}
+          keyExtractor={(item) => `${item}`}
+        />
+      </View>
     </View>
   )
 }
@@ -98,5 +116,8 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1
+  },
+  flatListContainer: {
+    flex: 1,
   }
 })
