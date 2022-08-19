@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   summaryText: {
     fontFamily: 'open-sans',
-    fontSize: 24,
+    fontSize: deviceWidth < 380 ? 20 : 24,
     textAlign: 'center',
     marginBottom: 24
   },
