@@ -76,12 +76,12 @@ export default function GameScreen(this: any, { userNumber, onGameOver }: GameSc
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonContainer}>
             <PrimaryButton onPress={nextGuessHandler.bind(this, 'lower')}>
-              <Ionicons name='md-remove' size={24} color='white' />
+              <Ionicons name="arrow-down-sharp" size={24} color="white" />
             </PrimaryButton>
           </View>
           <View style={styles.buttonContainer}>
             <PrimaryButton onPress={nextGuessHandler.bind(this, 'greater')}>
-              <Ionicons name='md-add' size={24} color='white' />
+              <Ionicons name="arrow-up-sharp" size={24} color="white" />
             </PrimaryButton>
           </View>
         </View>
