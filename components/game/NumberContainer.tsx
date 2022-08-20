@@ -1,14 +1,15 @@
-import { StyleSheet, Text, View, Dimensions } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, StyleProp, TextStyle } from 'react-native'
 import React from 'react'
 import Colors from '../../constants/colors'
 
 interface NumberContainerProps {
-  children: React.ReactNode
+  children: React.ReactNode,
+  style?: StyleProp<TextStyle>
 }
 
-export default function NumberContainer({ children }: NumberContainerProps) {
+export default function NumberContainer({ children, style }: NumberContainerProps) {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <Text style={styles.numberText}>{children}</Text>
     </View>
   )
