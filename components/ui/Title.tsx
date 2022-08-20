@@ -1,6 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Platform, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import Colors from '../../constants/colors'
 
 interface TitleProps {
   children?: React.ReactNode,
@@ -20,7 +19,8 @@ const styles = StyleSheet.create({
     // fontWeight: 'bold',
     color: 'white',
     textAlign: 'center',
-    borderWidth: 2,
+    // borderWidth: Platform.OS === 'android' ? 2 : 0,
+    borderWidth: Platform.select({ ios: 0, android: 2 }),
     borderColor: 'white',
     maxWidth: '80%'
   }
